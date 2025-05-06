@@ -15,6 +15,7 @@
  */
 
 #include "quantum.h"
+#include "gpio.h" 
 
 // The first four layers gets a name for readability, which is then used in the OLED below.
 enum layers {
@@ -23,6 +24,14 @@ enum layers {
   _RAISE,
   _ADJUST
 };
+
+
+// Disable the power LED 
+void keyboard_pre_init_kb(void) {
+    gpio_set_pin_output(24);
+    gpio_write_pin_high(24);
+}
+
 
 #ifdef OLED_ENABLE
 // NOTE: Most of the OLED code was originally written by Soundmonster for the Corne,
